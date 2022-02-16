@@ -1,4 +1,6 @@
 import unittest
+
+from numpy import true_divide
 from arithmetic_arranger import arithmatic_arranger
 
 class UnitTests(unittest.TestCase):
@@ -12,18 +14,15 @@ class UnitTests(unittest.TestCase):
         )
 
         actual = arithmatic_arranger(
-            ["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"])
-        expected = "  11      3801      1      123         1\n+  4    - 2999    + 2    +  49    - 9380\n----    ------    ---    -----    ------"
+            ["3 + 855", "3801 - 2", "45 + 43", "123 + 49"])
+        expected =   "    3      3801      45      123\n+ 855    -    2    + 43    +  49\n-----    ------    ----    -----"
         self.assertEqual(
             actual, expected,
-            'Expected different output when calling "arithmetic_arranger()" with ["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"]'
+            'Expected different output when calling "arithmetic_arranger()" with ["7 + 12", "8967 - 2677", "2 + 78", "74 + 56", "32 - 9"]'
         )
 
     def test_too_many_problems(self):
-        actual = arithmatic_arranger([
-            "44 + 815", "909 - 2", "45 + 43", "123 + 49", "888 + 40",
-            "653 + 87"
-        ])
+        actual = arithmatic_arranger(["44 + 815", "909 - 2", "45 + 43", "123 + 49", "12 + 40","445 + 4578"])
         expected = "Error: Too many problems."
         self.assertEqual(
             actual, expected,
@@ -32,7 +31,7 @@ class UnitTests(unittest.TestCase):
 
     def test_incorrect_operator(self):
         actual = arithmatic_arranger(
-            ["3 / 855", "3801 - 2", "45 + 43", "123 + 49"])
+            ["3 * 2355", "38 - 2", "4533 + 423", "3 + 49"])
         expected = "Error: Operator must be '+' or '-'."
         self.assertEqual(
             actual, expected,
@@ -41,7 +40,7 @@ class UnitTests(unittest.TestCase):
 
     def test_too_many_digits(self):
         actual = arithmatic_arranger(
-            ["24 + 85215", "3801 - 2", "45 + 43", "123 + 49"])
+            ["24333443 + 875", "3801 - 2", "45 + 43", "123 + 49"])
         expected = "Error: Numbers cannot be more than four digits."
         self.assertEqual(
             actual, expected,

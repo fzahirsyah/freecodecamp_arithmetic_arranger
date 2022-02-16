@@ -5,7 +5,7 @@ from traceback import print_tb
 from webbrowser import get
 from operator import truediv
 
-data = (["32 + 698", "3801 - 2", "45 + 4883", "123 + 49"])
+
 
 
 def error_exception(Error_Number1,Error_Operator,Error_Number2):
@@ -27,14 +27,14 @@ def error_exception(Error_Number1,Error_Operator,Error_Number2):
 
 def arithmatic_arranger(data, displayMode = False):
 
-    
+    indentation2 = "    "
     start = True
     line1 = line2 = line3 = line4 = ""
     try:
         if len(data) > 5:
             raise BaseException
     except:
-            return "Error: Too many problems"
+            return "Error: Too many problems."
 
     for i in data:
         Split_Data = i.split()    
@@ -51,9 +51,9 @@ def arithmatic_arranger(data, displayMode = False):
         num2 = int(number2)
 
         if start == True:
-            line1 += number1.rjust(indentation + 2) + "    "
-            line2 += operations+ ' ' + number2.rjust(indentation) + "    "
-            line3 += '-' * (indentation + 2) + "    "
+            line1 += number1.rjust(indentation + 2) 
+            line2 += operations+ ' ' + number2.rjust(indentation) 
+            line3 += '-' * (indentation + 2) 
             if displayMode == True:
                 if operations == '+':
                     line4 += str(num1 + num2).rjust(indentation + 2)
@@ -62,21 +62,20 @@ def arithmatic_arranger(data, displayMode = False):
             start = False
         else:
             start = False
-            line1 += number1.rjust(indentation + 2) + "    " 
-            line2 += operations+ ' ' + number2.rjust(indentation) + "    "
-            line3 += '-' * (indentation + 2) + "    "
+            line1 += number1.rjust(indentation + 6) 
+            line2 += operations.rjust(5)+ ' ' + number2.rjust(indentation) 
+            line3 += indentation2 + '-' * (indentation + 2) 
             if displayMode == True:
                 if operations == '+':
-                    line4 += "    " + str(num1 + num2).rjust(indentation + 2)
+                    line4 += indentation2 + str(num1 + num2).rjust(indentation + 2)
                 else:
-                    line4 += "    " + str(num1 - num2).rjust(indentation + 2)
+                    line4 += indentation2 + str(num1 - num2).rjust(indentation + 2)
     if displayMode == True:
         return line1 + '\n' + line2 + '\n' + line3 + '\n' + line4
     return line1 + '\n' + line2 + '\n' + line3
 
 
 
-print(arithmatic_arranger(data,True))
     
 
 
